@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 export interface ITodo {
     id: string;
@@ -16,10 +17,16 @@ export class HomeComponent implements OnInit {
 
     todolists: Array<ITodo> = [];
 
-    constructor() {
+    constructor(private http: HttpClient) {
     }
 
     ngOnInit() {
+        this.http.get<ITodo[]>('https://social-network.samuraijs.com/api/1.0/todo-lists', {
+            withCredentials: true
+        }).subscribe((res) => {
+            this.todolists = res;
+        });
+
         this.todolists = [
             {
                 id: '1',
