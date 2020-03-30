@@ -7,10 +7,7 @@ import {HttpHeaders} from '@angular/common/http';
 export const environment = {
     production: false,
     baseUrl: 'https://social-network.samuraijs.com/api/1.0/todo-lists',
-    options: {
-        withCredentials: true,
-        headers: new HttpHeaders().append('API-KEY', '794181ab-6d62-4cfb-bc9f-d539dfac55f1')
-    }
+    apiKey: '794181ab-6d62-4cfb-bc9f-d539dfac55f1'
 };
 
 /*
