@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ITodo} from '../../home/home.component';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {delay} from 'rxjs/operators';
 
 interface IAddTodoResponse {
     data: {
@@ -27,7 +28,11 @@ export class TodolistService {
     }
 
     getTodolists(): Observable<ITodo[]> {
-        return this.http.get<ITodo[]>(environment.baseUrl, environment.options);
+        return this.http.get<ITodo[]>(environment.baseUrl, environment.options)
+            .pipe(
+                // study delay for watch loading
+                delay(1000)
+            );
     }
 
     addTodolist(value: string): Observable<IAddTodoResponse> {

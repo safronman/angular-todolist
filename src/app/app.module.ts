@@ -8,6 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {AddNewItemFormComponent} from './add-new-item-form/add-new-item-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {LoaderComponent} from './shared/components/loader/loader.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import {FormsModule} from '@angular/forms';
         TodolistComponent,
         TaskComponent,
         HomeComponent,
-        AddNewItemFormComponent
+        AddNewItemFormComponent,
+        LoaderComponent
     ],
     imports: [
         BrowserModule,

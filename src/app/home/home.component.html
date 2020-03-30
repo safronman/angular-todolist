@@ -1,4 +1,4 @@
-<div class="home__container">
+<div class="home__container" *ngIf="isTodolistsLoaded; else loader">
     <h1 class="home__title">Angular todolist</h1>
     <app-add-new-item-form [isInputBig]="true" (addItem)="addTodolist($event)"></app-add-new-item-form>
     <div class="home__todo-container">
@@ -9,4 +9,7 @@
         ></app-todolist>
     </div>
 </div>
+<ng-template #loader>
+   <app-loader></app-loader>
+</ng-template>
 

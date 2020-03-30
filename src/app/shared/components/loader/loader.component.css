@@ -1,0 +1,13 @@
+.container {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    min-width: 1000px;
+    height: 100%;
+    background: crimson url(src/assets/audio.svg) center center no-repeat;
+    background-size: 128px;
+}
