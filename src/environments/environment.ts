@@ -2,9 +2,15 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {HttpHeaders} from '@angular/common/http';
+
 export const environment = {
     production: false,
     baseUrl: 'https://social-network.samuraijs.com/api/1.0/todo-lists',
+    options: {
+        withCredentials: true,
+        headers: new HttpHeaders().append('API-KEY', '794181ab-6d62-4cfb-bc9f-d539dfac55f1')
+    }
 };
 
 /*

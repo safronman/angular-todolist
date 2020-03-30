@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ITodo} from '../../home/home.component';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
@@ -23,24 +23,19 @@ interface IDeleteTodoResponse {
 })
 export class TodolistService {
 
-    options = {
-        withCredentials: true,
-        headers: new HttpHeaders().append('API-KEY', '794181ab-6d62-4cfb-bc9f-d539dfac55f1')
-    };
-
     constructor(private http: HttpClient) {
     }
 
     getTodolists(): Observable<ITodo[]> {
-        return this.http.get<ITodo[]>(environment.baseUrl, this.options);
+        return this.http.get<ITodo[]>(environment.baseUrl, environment.options);
     }
 
     addTodolist(value: string): Observable<IAddTodoResponse> {
-        return this.http.post<IAddTodoResponse>(environment.baseUrl, {title: value}, this.options);
+        return this.http.post<IAddTodoResponse>(environment.baseUrl, {title: value}, environment.options);
     }
 
     deleteTodolist(todolistId: string): Observable<IDeleteTodoResponse> {
-        return this.http.delete<IDeleteTodoResponse>(`${environment.baseUrl}/${todolistId}`, this.options);
+        return this.http.delete<IDeleteTodoResponse>(`${environment.baseUrl}/${todolistId}`, environment.options);
     }
 
 }
