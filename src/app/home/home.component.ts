@@ -34,4 +34,12 @@ export class HomeComponent implements OnInit {
             });
     }
 
+    deleteTodolist(todolistId: string) {
+        this.todolistService.deleteTodolist(todolistId)
+            .subscribe((res) => {
+                this.todolists = this.todolists.filter((tl) => {
+                    return tl.id !== todolistId;
+                });
+            });
+    }
 }

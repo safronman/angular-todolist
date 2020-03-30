@@ -1,8 +1,9 @@
 <div class="todolist__container">
-    <h3 class="todolist__title">{{ todolist.title }}</h3>
-    <app-add-new-item-form></app-add-new-item-form>
-    <app-task *ngFor="let task of tasks"
-        [task]="task"
-    >
-    </app-task>
+    <button class="btn todolist__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
+    <div>
+        <h3 class="todolist__title">{{ todolist.title }}</h3>
+        <app-add-new-item-form></app-add-new-item-form>
+        <app-task *ngFor="let task of tasks" [task]="task">
+        </app-task>
+    </div>
 </div>

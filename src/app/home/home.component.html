@@ -5,6 +5,7 @@
         <app-todolist
             *ngFor="let todolist of todolists"
             [todolist]="todolist"
+            (deleteTodo)="deleteTodolist($event)"
         ></app-todolist>
     </div>
 </div>

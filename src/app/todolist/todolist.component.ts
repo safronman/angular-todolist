@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITodo} from '../home/home.component';
 
 export interface ITask {
@@ -23,6 +23,7 @@ export interface ITask {
 export class TodolistComponent implements OnInit {
 
     @Input() todolist: ITodo;
+    @Output() deleteTodo = new EventEmitter<string>();
 
     tasks: Array<ITask> = [];
 
@@ -58,5 +59,9 @@ export class TodolistComponent implements OnInit {
                 addedDate: new Date().toString(),
             }
         ];
+    }
+
+    onDeleteTodolistClick(todolistId) {
+        this.deleteTodo.emit(todolistId);
     }
 }
