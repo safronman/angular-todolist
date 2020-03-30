@@ -5,6 +5,10 @@
            type="text"
            placeholder="Enter name"
            [ngClass]="{'add-new-item-form__input--big': isInputBig}"
+           [(ngModel)]="inputValue"
     >
-    <button class="btn" [ngClass]="{'btn--big': isInputBig}">+</button>
+    <button class="btn"
+            [ngClass]="{'btn--big': isInputBig}"
+            (click)="onAddItemClick()"
+    >+</button>
 </div>

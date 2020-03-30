@@ -1,13 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-add-new-item-form',
     templateUrl: './add-new-item-form.component.html',
-    styleUrls: ['../app.component.css',  './add-new-item-form.component.css']
+    styleUrls: ['../app.component.css', './add-new-item-form.component.css']
 })
 export class AddNewItemFormComponent implements OnInit {
 
     @Input() isInputBig = false;
+    @Output() addItem = new EventEmitter<string>();
+
+    inputValue = '';
 
     constructor() {
     }
@@ -15,4 +18,7 @@ export class AddNewItemFormComponent implements OnInit {
     ngOnInit() {
     }
 
+    onAddItemClick() {
+        this.addItem.emit(this.inputValue);
+    }
 }
