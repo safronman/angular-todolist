@@ -3,3 +3,8 @@
 
     text-align: center;
 }
+
+.home__todo-container {
+    display: flex;
+    justify-content: flex-start;
+}

@@ -1,5 +1,6 @@
 .todolist__container {
     width: 300px;
+    margin-right: 20px;
     padding: 20px;
 
     border: 2px solid grey;
