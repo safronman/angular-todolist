@@ -1,6 +1,6 @@
 <div class="task__container">
     <label>
-        <input type="checkbox">
+        <input type="checkbox" [checked]="task.completed">
     </label>
-    <p>Task name 1</p>
+    <p>{{ task.title }}</p>
 </div>
