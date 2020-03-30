@@ -1,0 +1,11 @@
+.task__container {
+    display: flex;
+    align-items: center;
+
+    margin: 0 0 10px 0;
+    padding: 10px;
+
+    text-align: center;
+
+    border: 2px solid grey;
+}
