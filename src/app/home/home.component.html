@@ -1,13 +1,17 @@
 <div class="home__container" *ngIf="isTodolistsLoaded; else loader">
     <h1 class="home__title">Angular todolist</h1>
     <app-add-new-item-form [isInputBig]="true" (addItem)="addTodolist($event)"></app-add-new-item-form>
-    <div class="home__todo-container">
+
+    <div class="home__todo-container" *ngIf="isTodolists; else noTodolistsMessage">
         <app-todolist
             *ngFor="let todolist of todolists"
             [todolist]="todolist"
             (deleteTodo)="deleteTodolist($event)"
         ></app-todolist>
     </div>
+    <ng-template #noTodolistsMessage>
+        <h2 class="home__no-todos-message">No todolists added. Please add new todo</h2>
+    </ng-template>
 </div>
 <ng-template #loader>
    <app-loader></app-loader>

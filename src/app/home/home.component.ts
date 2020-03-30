@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
 
     todolists: Array<ITodo> = [];
     isTodolistsLoaded = false;
+    isTodolists = false;
 
     constructor(private todolistService: TodolistService) {
     }
@@ -25,8 +26,14 @@ export class HomeComponent implements OnInit {
         this.isTodolistsLoaded = false;
         this.todolistService.getTodolists()
             .subscribe((res) => {
-                this.todolists = res;
-                this.isTodolistsLoaded = true;
+                if (res.length === 0) {
+                    this.isTodolists = false;
+                    this.isTodolistsLoaded = true;
+                } else {
+                    this.isTodolists = true;
+                    this.todolists = res;
+                    this.isTodolistsLoaded = true;
+                }
             });
     }
 
@@ -34,6 +41,7 @@ export class HomeComponent implements OnInit {
         this.isTodolistsLoaded = false;
         this.todolistService.addTodolist(value)
             .subscribe((res) => {
+                this.isTodolists = true;
                 this.todolists.unshift(res.data.item);
                 this.isTodolistsLoaded = true;
             });
@@ -46,6 +54,9 @@ export class HomeComponent implements OnInit {
                 this.todolists = this.todolists.filter((tl) => {
                     return tl.id !== todolistId;
                 });
+                if (this.todolists.length === 0) {
+                    this.isTodolists = false;
+                }
                 this.isTodolistsLoaded = true;
             });
     }

@@ -9,3 +9,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 }
+
+.home__no-todos-message {
+    text-align: center;
+}
