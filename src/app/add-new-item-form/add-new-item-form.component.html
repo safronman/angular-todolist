@@ -1,14 +1,26 @@
 <div class="add-new-item-form__container"
      [ngClass]="{'add-new-item-form__container--big': isInputBig}"
 >
-    <input class="add-new-item-form__input"
-           type="text"
-           placeholder="Enter name"
-           [ngClass]="{'add-new-item-form__input--big': isInputBig}"
-           [(ngModel)]="inputValue"
+    <div class="add-new-item-form__enter-field-container"
+         [ngClass]="{'add-new-item-form__enter-field-container--big': isInputBig}"
     >
-    <button class="btn"
-            [ngClass]="{'btn--big': isInputBig}"
-            (click)="onAddItemClick()"
-    >+</button>
+        <input class="add-new-item-form__input"
+              type="text"
+              placeholder="Enter name"
+              [ngClass]="{
+                 'add-new-item-form__input--big': isInputBig,
+                 'add-new-item-form__input--error': showEmptyInputError
+           }"
+              [(ngModel)]="inputValue"
+    >
+        <button class="btn"
+                [ngClass]="{'btn--big': isInputBig}"
+                (click)="onAddItemClick()"
+        >+
+        </button>
+    </div>
+    <div *ngIf="showEmptyInputError">
+        <p class="add-new-item-form__message-error" >Field mustn't be empty</p>
+    </div>
 </div>
+

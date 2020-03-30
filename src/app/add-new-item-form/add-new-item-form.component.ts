@@ -11,6 +11,7 @@ export class AddNewItemFormComponent implements OnInit {
     @Output() addItem = new EventEmitter<string>();
 
     inputValue = '';
+    showEmptyInputError = false;
 
     constructor() {
     }
@@ -19,6 +20,12 @@ export class AddNewItemFormComponent implements OnInit {
     }
 
     onAddItemClick() {
-        this.addItem.emit(this.inputValue);
+        if (this.inputValue.trim()) {
+            this.showEmptyInputError = false;
+            this.addItem.emit(this.inputValue);
+            this.inputValue = '';
+        } else {
+            this.showEmptyInputError = true;
+        }
     }
 }

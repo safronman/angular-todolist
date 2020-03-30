@@ -1,14 +1,21 @@
 .add-new-item-form__container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
     margin-bottom: 20px;
 }
 
 .add-new-item-form__container--big {
     justify-content: center;
+
     margin-bottom: 40px;
+}
+
+.add-new-item-form__enter-field-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.add-new-item-form__enter-field-container--big {
+    justify-content: center;
 }
 
 .add-new-item-form__input {
@@ -19,6 +26,18 @@
 }
 
 .add-new-item-form__input--big {
-    padding: 20px;
     width: 70%;
+    padding: 20px;
+}
+
+.add-new-item-form__input--error {
+    border: 2px solid crimson;
+}
+
+.add-new-item-form__message-error {
+    font-size: 24px;
+
+    text-align: center;
+
+    color: crimson;
 }
