@@ -1,6 +1,10 @@
-<div class="add-new-item-form__container">
-    <label>
-        <input class="add-new-item-form__input" type="text" placeholder="Enter name">
-    </label>
-    <button class="btn">+</button>
+<div class="add-new-item-form__container"
+     [ngClass]="{'add-new-item-form__container--big': isInputBig}"
+>
+    <input class="add-new-item-form__input"
+           type="text"
+           placeholder="Enter name"
+           [ngClass]="{'add-new-item-form__input--big': isInputBig}"
+    >
+    <button class="btn" [ngClass]="{'btn--big': isInputBig}">+</button>
 </div>
