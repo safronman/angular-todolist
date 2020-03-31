@@ -6,7 +6,7 @@ import {HttpHeaders} from '@angular/common/http';
 
 export const environment = {
     production: false,
-    baseUrl: 'https://social-network.samuraijs.com/api/1.0/todo-lists',
+    baseUrl: 'https://social-network.samuraijs.com/api/1.1',
     apiKey: '794181ab-6d62-4cfb-bc9f-d539dfac55f1'
 };
 
