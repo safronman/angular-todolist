@@ -37,19 +37,18 @@ export class TodolistComponent implements OnInit, OnDestroy {
     editTitleMode = false;
     taskLoading = false;
 
-    getTasksSub: Subscription;
-    addTaskSub: Subscription;
+    subscriptions: Subscription = new Subscription();
 
     constructor(private taskService: TaskService) {
     }
 
     ngOnInit() {
         this.taskLoading = true;
-        this.getTasksSub = this.taskService.getTasks(this.todolist.id)
+        this.subscriptions.add(this.taskService.getTasks(this.todolist.id)
             .subscribe((res) => {
                 this.tasks = res.items;
                 this.taskLoading = false;
-            });
+            }));
     }
 
     onDeleteTodolistClick(todolistId) {
@@ -67,15 +66,14 @@ export class TodolistComponent implements OnInit, OnDestroy {
 
     addTask(title) {
         this.taskLoading = true;
-        this.addTaskSub = this.taskService.addTask(this.todolist.id, title)
+        this.subscriptions.add(this.taskService.addTask(this.todolist.id, title)
             .subscribe((res) => {
                 this.tasks.unshift(res.data.item);
                 this.taskLoading = false;
-            });
+            }));
     }
 
     ngOnDestroy() {
-        this.getTasksSub.unsubscribe();
-        this.addTaskSub.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 }

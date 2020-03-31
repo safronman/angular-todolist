@@ -22,17 +22,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     loading = false;
     isTodolists = false;
 
-    getTodoSub: Subscription;
-    addTodoSub: Subscription;
-    delTodoSub: Subscription;
-    updateTodoTitleSub: Subscription;
+    subscriptions: Subscription = new Subscription();
 
     constructor(private todolistService: TodolistService) {
     }
 
     ngOnInit() {
         this.isTodolistsLoaded = false;
-        this.getTodoSub = this.todolistService.getTodolists()
+        this.subscriptions.add(this.todolistService.getTodolists()
             .subscribe((res) => {
                 if (res.length === 0) {
                     this.isTodolists = false;
@@ -42,22 +39,22 @@ export class HomeComponent implements OnInit, OnDestroy {
                     this.todolists = res;
                     this.isTodolistsLoaded = true;
                 }
-            });
+            }));
     }
 
     addTodolist(value: string) {
         this.loading = true;
-        this.addTodoSub = this.todolistService.addTodolist(value)
+        this.subscriptions.add(this.todolistService.addTodolist(value)
             .subscribe((res) => {
                 this.isTodolists = true;
                 this.todolists.unshift(res.data.item);
                 this.loading = false;
-            });
+            }));
     }
 
     deleteTodolist(todolistId: string) {
         this.loading = true;
-        this.delTodoSub = this.todolistService.deleteTodolist(todolistId)
+        this.subscriptions.add(this.todolistService.deleteTodolist(todolistId)
             .subscribe((res) => {
                 this.todolists = this.todolists.filter((tl) => {
                     return tl.id !== todolistId;
@@ -66,22 +63,19 @@ export class HomeComponent implements OnInit, OnDestroy {
                     this.isTodolists = false;
                 }
                 this.loading = false;
-            });
+            }));
     }
 
     changeTodolistTitle(data: IChangeTodoTitle) {
         this.loading = true;
         const {todolistTitle, todolistId} = data;
-        this.updateTodoTitleSub = this.todolistService.updateTodolistTitle(todolistTitle, todolistId)
+        this.subscriptions.add(this.todolistService.updateTodolistTitle(todolistTitle, todolistId)
             .subscribe((res) => {
                 this.loading = false;
-            });
+            }));
     }
 
     ngOnDestroy() {
-        this.getTodoSub.unsubscribe();
-        this.addTodoSub.unsubscribe();
-        this.delTodoSub.unsubscribe();
-        this.updateTodoTitleSub.unsubscribe();
+        this.subscriptions.unsubscribe();
     }
 }
