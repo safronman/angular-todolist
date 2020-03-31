@@ -11,6 +11,11 @@
 
 .task__grid-container {
     display: flex;
+    flex-direction: column;
+}
+
+.task__info {
+    display: flex;
     align-items: center;
 }
 
@@ -20,12 +25,17 @@
 
 .task__title {
     font-size: 18px;
+    text-align: left;
+}
+
+.task__date {
+    margin: 0 0 10px 0;
 
     text-align: left;
 }
 
 .task__title-completed {
-    opacity: 0.3;
+    opacity: .3;
 }
 
 .task__input-edit-mode {

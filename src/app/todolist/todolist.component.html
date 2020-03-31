@@ -28,7 +28,8 @@
         <ng-template #noTasksMessage>
             <p>Tasks have not been added yet. Please add task</p>
         </ng-template>
-
+        <hr>
+        <p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p>
     </div>
     <ng-template #showLoader>
         <app-tail-spin-loader></app-tail-spin-loader>
