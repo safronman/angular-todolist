@@ -1,6 +1,6 @@
 <div class="todolist__container">
     <button class="btn todolist__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
-    <div>
+    <div *ngIf="!taskLoading; else showLoader">
         <div>
             <h3 class="todolist__title" (dblclick)="changeTitle()"
                 *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
@@ -18,4 +18,7 @@
         <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
         <app-task *ngFor="let task of tasks" [task]="task"></app-task>
     </div>
+    <ng-template #showLoader>
+        <app-tail-spin-loader></app-tail-spin-loader>
+    </ng-template>
 </div>

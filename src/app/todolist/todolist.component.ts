@@ -35,6 +35,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
 
     tasks: Array<ITask> = [];
     editTitleMode = false;
+    taskLoading = false;
 
     getTasksSub: Subscription;
     addTaskSub: Subscription;
@@ -43,9 +44,11 @@ export class TodolistComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.taskLoading = true;
         this.getTasksSub = this.taskService.getTasks(this.todolist.id)
             .subscribe((res) => {
                 this.tasks = res.items;
+                this.taskLoading = false;
             });
     }
 
@@ -63,9 +66,11 @@ export class TodolistComponent implements OnInit, OnDestroy {
     }
 
     addTask(title) {
+        this.taskLoading = true;
         this.addTaskSub = this.taskService.addTask(this.todolist.id, title)
             .subscribe((res) => {
                 this.tasks.unshift(res.data.item);
+                this.taskLoading = false;
             });
     }
 
