@@ -33,7 +33,7 @@ export class TodolistService {
     }
 
     getTodolists(): Observable<ITodo[]> {
-        return this.http.get<ITodo[]>(environment.baseUrl, this.options)
+        return this.http.get<ITodo[]>(`${environment.baseUrl}/todo-lists`, this.options)
             .pipe(
                 // study delay for watch loading
                 delay(1000)
@@ -41,15 +41,15 @@ export class TodolistService {
     }
 
     addTodolist(value: string): Observable<IAddTodoResponse> {
-        return this.http.post<IAddTodoResponse>(environment.baseUrl, {title: value}, this.options);
+        return this.http.post<IAddTodoResponse>(`${environment.baseUrl}/todo-lists`, {title: value}, this.options);
     }
 
     deleteTodolist(todolistId: string): Observable<IResponse> {
-        return this.http.delete<IResponse>(`${environment.baseUrl}/${todolistId}`, this.options);
+        return this.http.delete<IResponse>(`${environment.baseUrl}/todo-lists/${todolistId}`, this.options);
     }
 
     updateTodolistTitle(todolistTitle: string, todolistId: string): Observable<IResponse> {
-        return this.http.put<IResponse>(`${environment.baseUrl}/${todolistId}`,  {title: todolistTitle}, this.options);
+        return this.http.put<IResponse>(`${environment.baseUrl}/todo-lists/${todolistId}`,  {title: todolistTitle}, this.options);
     }
 }
 
