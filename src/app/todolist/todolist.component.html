@@ -18,7 +18,12 @@
         <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
 
         <div *ngIf="isTasks; else noTasksMessage">
-            <app-task *ngFor="let task of tasks" [task]="task" (deleteTask)="deleteTask($event)"></app-task>
+            <app-task
+                *ngFor="let task of tasks"
+                [task]="task"
+                (deleteTask)="deleteTask($event)"
+                (changeTaskStatus)="changeTaskStatus($event)"
+            ></app-task>
         </div>
         <ng-template #noTasksMessage>
             <p>Tasks have not been added yet. Please add task</p>

@@ -83,7 +83,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
 
     deleteTask(taskId) {
         this.taskLoading = true;
-        this.taskService.deleteTask(this.todolist.id, taskId)
+        this.subscriptions.add(this.taskService.deleteTask(this.todolist.id, taskId)
             .subscribe((res) => {
                 this.tasks = this.tasks.filter((t) => {
                     return t.id !== taskId;
@@ -92,7 +92,15 @@ export class TodolistComponent implements OnInit, OnDestroy {
                     this.isTasks = false;
                 }
                 this.taskLoading = false;
-            });
+            }));
+    }
+
+    changeTaskStatus(task: ITask) {
+        this.taskLoading = true;
+        this.subscriptions.add(this.taskService.updateTask(task.todoListId, task.id, task)
+            .subscribe((res) => {
+                this.taskLoading = false;
+            }));
     }
 
     ngOnDestroy() {

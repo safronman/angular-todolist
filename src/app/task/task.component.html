@@ -1,7 +1,11 @@
 <div class="task__container">
     <div class="task__inner-container">
         <label>
-            <input class="task__input" type="checkbox" [checked]="task.completed">
+            <input class="task__input"
+                   type="checkbox"
+                   [checked]="task.status === 2"
+                   (input)="onChangeCompletedTask($event)"
+            >
         </label>
         <p class="task__title">{{ task.title }}</p>
     </div>

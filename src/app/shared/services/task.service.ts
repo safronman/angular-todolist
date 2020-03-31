@@ -11,7 +11,7 @@ interface ITaskResponse {
     error: string;
 }
 
-interface IAddTaskResponse {
+interface IAddOrUpdateTaskResponse {
     data: {
         item: ITask
     };
@@ -35,11 +35,16 @@ export class TaskService {
         return this.http.get<ITaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, this.options);
     }
 
-    addTask(todolistId: string, title: string): Observable<IAddTaskResponse> {
-        return this.http.post<IAddTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, {title}, this.options);
+    addTask(todolistId: string, title: string): Observable<IAddOrUpdateTaskResponse> {
+        return this.http.post<IAddOrUpdateTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, {title}, this.options);
     }
 
     deleteTask(todolistId: string, taskId: string): Observable<IResponse> {
         return this.http.delete<IResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks/${taskId}`, this.options);
     }
+
+    updateTask(todolistId: string, taskId: string, task: ITask): Observable<IAddOrUpdateTaskResponse> {
+        return this.http.put<IAddOrUpdateTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks/${taskId}`, task, this.options);
+    }
+
 }
