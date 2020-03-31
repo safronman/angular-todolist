@@ -16,8 +16,11 @@
 }
 
 .task__title {
-    overflow: hidden;
-
-    width: 75%;
     text-align: left;
+}
+
+.task__input-edit-mode {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid grey;
 }

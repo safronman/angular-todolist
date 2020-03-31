@@ -7,7 +7,21 @@
                    (input)="onChangeCompletedTask($event)"
             >
         </label>
-        <p class="task__title">{{ task.title }}</p>
+        <div *ngIf="!taskTitleEditMode; else editMode">
+            <p class="task__title" (dblclick)="showEditMode()">{{ task.title }}</p>
+        </div>
+        <ng-template #editMode>
+            <input
+                class="task__input-edit-mode"
+                type="text"
+                placeholder="Enter new task name"
+                autofocus
+                [value]="task.title"
+                [(ngModel)]="task.title"
+                (blur)="onChangeTaskTitle()"
+                (keyup.enter)="onChangeTaskTitle()"
+            >
+        </ng-template>
     </div>
     <button class="btn delete__btn" (click)="onDeleteTaskClick(task.id)">x</button>
 </div>

@@ -22,7 +22,7 @@
                 *ngFor="let task of tasks"
                 [task]="task"
                 (deleteTask)="deleteTask($event)"
-                (changeTaskStatus)="changeTaskStatus($event)"
+                (changeTask)="changeTask($event)"
             ></app-task>
         </div>
         <ng-template #noTasksMessage>

@@ -44,7 +44,10 @@ export class TaskService {
     }
 
     updateTask(todolistId: string, taskId: string, task: ITask): Observable<IAddOrUpdateTaskResponse> {
-        return this.http.put<IAddOrUpdateTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks/${taskId}`, task, this.options);
+        return this.http.put<IAddOrUpdateTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks/${taskId}`,
+            task,
+            this.options
+        );
     }
 
 }

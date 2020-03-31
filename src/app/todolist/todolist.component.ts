@@ -95,7 +95,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
             }));
     }
 
-    changeTaskStatus(task: ITask) {
+    changeTask(task: ITask) {
         this.taskLoading = true;
         this.subscriptions.add(this.taskService.updateTask(task.todoListId, task.id, task)
             .subscribe((res) => {

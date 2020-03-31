@@ -10,7 +10,9 @@ export class TaskComponent implements OnInit {
 
     @Input() task: ITask;
     @Output() deleteTask = new EventEmitter<string>();
-    @Output() changeTaskStatus = new EventEmitter<ITask>();
+    @Output() changeTask = new EventEmitter<ITask>();
+
+    taskTitleEditMode = false;
 
     constructor() {
     }
@@ -23,7 +25,16 @@ export class TaskComponent implements OnInit {
     }
 
     onChangeCompletedTask(e) {
-        this.task.status = e.currentTarget.checked ? 2 : 0 ;
-        this.changeTaskStatus.emit(this.task);
+        this.task.status = e.currentTarget.checked ? 2 : 0;
+        this.changeTask.emit(this.task);
+    }
+
+    onChangeTaskTitle() {
+        this.changeTask.emit(this.task);
+        this.taskTitleEditMode = false;
+    }
+
+    showEditMode() {
+        this.taskTitleEditMode = true;
     }
 }
