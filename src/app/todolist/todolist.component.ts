@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ITodo} from '../home/home.component';
+import {TaskService} from '../shared/services/task.service';
+import {Subscription} from 'rxjs';
 
 export interface ITask {
     description: string;
@@ -25,7 +27,7 @@ export interface IChangeTodoTitle {
     templateUrl: './todolist.component.html',
     styleUrls: ['./todolist.component.css']
 })
-export class TodolistComponent implements OnInit {
+export class TodolistComponent implements OnInit, OnDestroy {
 
     @Input() todolist: ITodo;
     @Output() deleteTodo = new EventEmitter<string>();
@@ -34,10 +36,17 @@ export class TodolistComponent implements OnInit {
     tasks: Array<ITask> = [];
     editTitleMode = false;
 
-    constructor() {
+    getTasksSub: Subscription;
+
+    constructor(private taskService: TaskService) {
     }
 
     ngOnInit() {
+        this.getTasksSub = this.taskService.getTasks(this.todolist.id)
+            .subscribe((res) => {
+                this.tasks = res.items;
+            });
+
         this.tasks = [
             {
                 description: 'task description 1',
@@ -77,7 +86,11 @@ export class TodolistComponent implements OnInit {
     }
 
     onBlurTodolistTitle(todolistId) {
-        this.changeTodoTitle.emit({ todolistTitle: this.todolist.title, todolistId});
+        this.changeTodoTitle.emit({todolistTitle: this.todolist.title, todolistId});
         this.editTitleMode = false;
+    }
+
+    ngOnDestroy() {
+        this.getTasksSub.unsubscribe();
     }
 }
