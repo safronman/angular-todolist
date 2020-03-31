@@ -1,5 +1,5 @@
 <div class="todolist__container">
-    <button class="btn todolist__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
+    <button class="btn delete__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
     <div *ngIf="!taskLoading; else showLoader">
         <div>
             <h3 class="todolist__title" (dblclick)="changeTitle()"
@@ -16,7 +16,7 @@
             </ng-template>
         </div>
         <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
-        <app-task *ngFor="let task of tasks" [task]="task"></app-task>
+        <app-task *ngFor="let task of tasks" [task]="task" (deleteTask)="deleteTask($event)"></app-task>
     </div>
     <ng-template #showLoader>
         <app-tail-spin-loader></app-tail-spin-loader>

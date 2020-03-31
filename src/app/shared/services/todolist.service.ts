@@ -13,7 +13,7 @@ interface IAddTodoResponse {
     resultCode: number;
 }
 
-interface IResponse {
+export interface IResponse {
     data: {};
     messages: Array<string>;
     resultCode: number;

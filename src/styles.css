@@ -1,3 +1,5 @@
+/*btn*/
+
 .btn {
     font-size: 26px;
 
@@ -15,4 +17,22 @@
 
 .btn--big {
     padding: 13px 20px;
+}
+
+.delete__btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    padding: 3px 12px;
+
+    content: '';
+
+    background-color: crimson;
+}
+
+.delete__btn:hover {
+    cursor: pointer;
+
+    background-color: #b91435;
 }

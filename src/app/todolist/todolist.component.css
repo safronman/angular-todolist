@@ -8,24 +8,6 @@
     border: 2px solid grey;
 }
 
-.todolist__btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-
-    padding: 3px 12px;
-
-    content: '';
-
-    background-color: crimson;
-}
-
-.todolist__btn:hover {
-    cursor: pointer;
-
-    background-color: #b91435;
-}
-
 .todolist__title-edit-mode {
     margin-bottom: 10px;
     padding: 10px;

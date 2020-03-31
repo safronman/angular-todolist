@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {ITask} from '../../todolist/todolist.component';
+import {IResponse} from './todolist.service';
 
 interface ITaskResponse {
     items: Array<ITask>;
@@ -36,5 +37,9 @@ export class TaskService {
 
     addTask(todolistId: string, title: string): Observable<IAddTaskResponse> {
         return this.http.post<IAddTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, {title}, this.options);
+    }
+
+    deleteTask(todolistId: string, taskId: string): Observable<IResponse> {
+        return this.http.delete<IResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks/${taskId}`, this.options);
     }
 }

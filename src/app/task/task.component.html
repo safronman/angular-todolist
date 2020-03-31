@@ -1,6 +1,9 @@
 <div class="task__container">
-    <label>
-        <input type="checkbox" [checked]="task.completed">
-    </label>
-    <p>{{ task.title }}</p>
+    <div class="task__inner-container">
+        <label>
+            <input type="checkbox" [checked]="task.completed">
+        </label>
+        <p>{{ task.title }}</p>
+    </div>
+    <button class="btn delete__btn" (click)="onDeleteTaskClick(task.id)">x</button>
 </div>

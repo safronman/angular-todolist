@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITask} from '../todolist/todolist.component';
 
 @Component({
@@ -9,6 +9,7 @@ import {ITask} from '../todolist/todolist.component';
 export class TaskComponent implements OnInit {
 
     @Input() task: ITask;
+    @Output() deleteTask = new EventEmitter<string>();
 
     constructor() {
     }
@@ -16,4 +17,7 @@ export class TaskComponent implements OnInit {
     ngOnInit() {
     }
 
+    onDeleteTaskClick(taskId: string) {
+        this.deleteTask.emit(taskId);
+    }
 }
