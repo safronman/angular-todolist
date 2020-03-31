@@ -15,6 +15,11 @@ export interface ITask {
     addedDate: string;
 }
 
+export interface IChangeTodoTitle {
+    todolistTitle: string;
+    todolistId: string;
+}
+
 @Component({
     selector: 'app-todolist',
     templateUrl: './todolist.component.html',
@@ -24,8 +29,10 @@ export class TodolistComponent implements OnInit {
 
     @Input() todolist: ITodo;
     @Output() deleteTodo = new EventEmitter<string>();
+    @Output() changeTodoTitle = new EventEmitter<IChangeTodoTitle>();
 
     tasks: Array<ITask> = [];
+    editTitleMode = false;
 
     constructor() {
     }
@@ -63,5 +70,14 @@ export class TodolistComponent implements OnInit {
 
     onDeleteTodolistClick(todolistId) {
         this.deleteTodo.emit(todolistId);
+    }
+
+    changeTitle() {
+        this.editTitleMode = true;
+    }
+
+    onBlurTodolistTitle(todolistId) {
+        this.changeTodoTitle.emit({ todolistTitle: this.todolist.title, todolistId});
+        this.editTitleMode = false;
     }
 }

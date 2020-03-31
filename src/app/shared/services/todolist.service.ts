@@ -13,7 +13,7 @@ interface IAddTodoResponse {
     resultCode: number;
 }
 
-interface IDeleteTodoResponse {
+interface IResponse {
     data: {};
     messages: Array<string>;
     resultCode: number;
@@ -44,10 +44,13 @@ export class TodolistService {
         return this.http.post<IAddTodoResponse>(environment.baseUrl, {title: value}, this.options);
     }
 
-    deleteTodolist(todolistId: string): Observable<IDeleteTodoResponse> {
-        return this.http.delete<IDeleteTodoResponse>(`${environment.baseUrl}/${todolistId}`, this.options);
+    deleteTodolist(todolistId: string): Observable<IResponse> {
+        return this.http.delete<IResponse>(`${environment.baseUrl}/${todolistId}`, this.options);
     }
 
+    updateTodolistTitle(todolistTitle: string, todolistId: string): Observable<IResponse> {
+        return this.http.put<IResponse>(`${environment.baseUrl}/${todolistId}`,  {title: todolistTitle}, this.options);
+    }
 }
 
 

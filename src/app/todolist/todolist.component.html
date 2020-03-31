@@ -1,9 +1,21 @@
 <div class="todolist__container">
     <button class="btn todolist__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
     <div>
-        <h3 class="todolist__title">{{ todolist.title }}</h3>
+        <div>
+            <h3 class="todolist__title" (dblclick)="changeTitle()"
+                *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
+            <ng-template #showEditMode>
+                <input class="todolist__title-edit-mode"
+                       type="text"
+                       placeholder="enter new value"
+                       [value]="todolist.title"
+                       [(ngModel)]="todolist.title"
+                       (blur)="onBlurTodolistTitle(todolist.id)"
+                       autofocus
+                >
+            </ng-template>
+        </div>
         <app-add-new-item-form></app-add-new-item-form>
-        <app-task *ngFor="let task of tasks" [task]="task">
-        </app-task>
+        <app-task *ngFor="let task of tasks" [task]="task"></app-task>
     </div>
 </div>
