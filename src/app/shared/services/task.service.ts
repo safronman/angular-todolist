@@ -10,6 +10,14 @@ interface ITaskResponse {
     error: string;
 }
 
+interface IAddTaskResponse {
+    data: {
+        item: ITask
+    };
+    resultCode: number;
+    messages: Array<string>;
+}
+
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -24,5 +32,9 @@ export class TaskService {
 
     getTasks(todolistId: string): Observable<ITaskResponse> {
         return this.http.get<ITaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, this.options);
+    }
+
+    addTask(todolistId: string, title: string): Observable<IAddTaskResponse> {
+        return this.http.post<IAddTaskResponse>(`${environment.baseUrl}/todo-lists/${todolistId}/tasks`, {title}, this.options);
     }
 }
