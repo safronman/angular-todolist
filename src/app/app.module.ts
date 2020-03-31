@@ -9,6 +9,7 @@ import {AddNewItemFormComponent} from './add-new-item-form/add-new-item-form.com
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {LoaderComponent} from './shared/components/loader/loader.component';
+import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import {LoaderComponent} from './shared/components/loader/loader.component';
         TaskComponent,
         HomeComponent,
         AddNewItemFormComponent,
-        LoaderComponent
+        LoaderComponent,
+        TailSpinLoaderComponent
     ],
     imports: [
         BrowserModule,

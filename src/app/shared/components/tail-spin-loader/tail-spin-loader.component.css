@@ -1,0 +1,7 @@
+.tail-spin {
+    width: 100px;
+    height: 100px;
+    display: block;
+    background: url(src/assets/tail-spin.svg) center center no-repeat;
+    background-size: contain;
+}

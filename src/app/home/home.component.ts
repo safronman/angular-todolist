@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from '../shared/services/todolist.service';
 import {Subscription} from 'rxjs';
+import {IChangeTodoTitle} from '../todolist/todolist.component';
 
 export interface ITodo {
     id: string;
@@ -18,11 +19,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     todolists: Array<ITodo> = [];
     isTodolistsLoaded = false;
+    loading = false;
     isTodolists = false;
 
     getTodoSub: Subscription;
     addTodoSub: Subscription;
     delTodoSub: Subscription;
+    updateTodoTitleSub: Subscription;
 
     constructor(private todolistService: TodolistService) {
     }
@@ -43,17 +46,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     addTodolist(value: string) {
-        this.isTodolistsLoaded = false;
+        this.loading = true;
         this.addTodoSub = this.todolistService.addTodolist(value)
             .subscribe((res) => {
                 this.isTodolists = true;
                 this.todolists.unshift(res.data.item);
-                this.isTodolistsLoaded = true;
+                this.loading = false;
             });
     }
 
     deleteTodolist(todolistId: string) {
-        this.isTodolistsLoaded = false;
+        this.loading = true;
         this.delTodoSub = this.todolistService.deleteTodolist(todolistId)
             .subscribe((res) => {
                 this.todolists = this.todolists.filter((tl) => {
@@ -62,7 +65,16 @@ export class HomeComponent implements OnInit, OnDestroy {
                 if (this.todolists.length === 0) {
                     this.isTodolists = false;
                 }
-                this.isTodolistsLoaded = true;
+                this.loading = false;
+            });
+    }
+
+    changeTodolistTitle(data: IChangeTodoTitle) {
+        this.loading = true;
+        const {todolistTitle, todolistId} = data;
+        this.updateTodoTitleSub = this.todolistService.updateTodolistTitle(todolistTitle, todolistId)
+            .subscribe((res) => {
+                this.loading = false;
             });
     }
 
@@ -70,5 +82,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.getTodoSub.unsubscribe();
         this.addTodoSub.unsubscribe();
         this.delTodoSub.unsubscribe();
+        this.updateTodoTitleSub.unsubscribe();
     }
 }
