@@ -1,9 +1,9 @@
 <div class="task__container">
     <div class="task__inner-container">
         <label>
-            <input type="checkbox" [checked]="task.completed">
+            <input class="task__input" type="checkbox" [checked]="task.completed">
         </label>
-        <p>{{ task.title }}</p>
+        <p class="task__title">{{ task.title }}</p>
     </div>
     <button class="btn delete__btn" (click)="onDeleteTaskClick(task.id)">x</button>
 </div>

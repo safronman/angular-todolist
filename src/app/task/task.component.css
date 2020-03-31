@@ -5,11 +5,19 @@
 .task__inner-container {
     display: flex;
     align-items: center;
-
     margin: 0 0 10px 0;
     padding: 0 10px;
-
     text-align: center;
-
     border: 2px solid grey;
+}
+
+.task__input {
+    margin-right: 10px;
+}
+
+.task__title {
+    overflow: hidden;
+
+    width: 75%;
+    text-align: left;
 }
