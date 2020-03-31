@@ -3,12 +3,15 @@
 }
 
 .task__inner-container {
-    display: flex;
-    align-items: center;
     margin: 0 0 10px 0;
     padding: 0 10px;
     text-align: center;
     border: 2px solid grey;
+}
+
+.task__grid-container {
+    display: flex;
+    align-items: center;
 }
 
 .task__input {
@@ -16,7 +19,13 @@
 }
 
 .task__title {
+    font-size: 18px;
+
     text-align: left;
+}
+
+.task__title-completed {
+    opacity: 0.3;
 }
 
 .task__input-edit-mode {

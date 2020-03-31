@@ -1,14 +1,16 @@
 <div class="task__container">
     <div class="task__inner-container">
-        <label>
-            <input class="task__input"
-                   type="checkbox"
-                   [checked]="task.status === 2"
-                   (input)="onChangeCompletedTask($event)"
-            >
-        </label>
-        <div *ngIf="!taskTitleEditMode; else editMode">
-            <p class="task__title" (dblclick)="showEditMode()">{{ task.title }}</p>
+        <div class="task__grid-container" [ngClass]="{'task__title-completed': task.status === 2}">
+            <label>
+                <input class="task__input"
+                       type="checkbox"
+                       [checked]="task.status === 2"
+                       (input)="onChangeCompletedTask($event)"
+                >
+            </label>
+            <div *ngIf="!taskTitleEditMode; else editMode">
+                <p class="task__title" (dblclick)="showEditMode()">{{ task.title }}</p>
+            </div>
         </div>
         <ng-template #editMode>
             <input
