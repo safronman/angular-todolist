@@ -36,6 +36,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
     tasks: Array<ITask> = [];
     editTitleMode = false;
     taskLoading = false;
+    isTasks = false;
 
     subscriptions: Subscription = new Subscription();
 
@@ -46,8 +47,14 @@ export class TodolistComponent implements OnInit, OnDestroy {
         this.taskLoading = true;
         this.subscriptions.add(this.taskService.getTasks(this.todolist.id)
             .subscribe((res) => {
-                this.tasks = res.items;
-                this.taskLoading = false;
+                if (res.items.length === 0) {
+                    this.isTasks = false;
+                    this.taskLoading = false;
+                } else {
+                    this.isTasks = true;
+                    this.tasks = res.items;
+                    this.taskLoading = false;
+                }
             }));
     }
 
@@ -68,6 +75,7 @@ export class TodolistComponent implements OnInit, OnDestroy {
         this.taskLoading = true;
         this.subscriptions.add(this.taskService.addTask(this.todolist.id, title)
             .subscribe((res) => {
+                this.isTasks = true;
                 this.tasks.unshift(res.data.item);
                 this.taskLoading = false;
             }));
@@ -80,6 +88,9 @@ export class TodolistComponent implements OnInit, OnDestroy {
                 this.tasks = this.tasks.filter((t) => {
                     return t.id !== taskId;
                 });
+                if (this.tasks.length === 0) {
+                    this.isTasks = false;
+                }
                 this.taskLoading = false;
             });
     }

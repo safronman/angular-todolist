@@ -16,7 +16,14 @@
             </ng-template>
         </div>
         <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
-        <app-task *ngFor="let task of tasks" [task]="task" (deleteTask)="deleteTask($event)"></app-task>
+
+        <div *ngIf="isTasks; else noTasksMessage">
+            <app-task *ngFor="let task of tasks" [task]="task" (deleteTask)="deleteTask($event)"></app-task>
+        </div>
+        <ng-template #noTasksMessage>
+            <p>Tasks have not been added yet. Please add task</p>
+        </ng-template>
+
     </div>
     <ng-template #showLoader>
         <app-tail-spin-loader></app-tail-spin-loader>
