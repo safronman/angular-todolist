@@ -8,9 +8,32 @@
     border: 2px solid grey;
 }
 
+.todolist__main-info {
+    margin-bottom: 30px;
+}
+
+.todolist__btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .todolist__title-edit-mode {
     margin-bottom: 10px;
     padding: 10px;
 
     border: 2px solid grey;
+}
+
+.btn--todolist {
+    font-size: 16px;
+
+    padding: 5px 20px;
+}
+
+.btn-selected {
+    background-color: lightseagreen;
+}
+
+.btn-selected:hover {
+    background-color: #1d9890;
 }

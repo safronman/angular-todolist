@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {ITodo} from '../home/home.component';
 import {TaskService} from '../shared/services/task.service';
 import {Subscription} from 'rxjs';
+import {TaskStatus} from '../shared/enums/enums';
 
 export interface ITask {
     description: string;
@@ -37,6 +38,9 @@ export class TodolistComponent implements OnInit, OnDestroy {
     editTitleMode = false;
     taskLoading = false;
     isTasks = false;
+
+    TaskStatus =  TaskStatus;
+    filteredValue = TaskStatus.All;
 
     subscriptions: Subscription = new Subscription();
 
@@ -101,6 +105,26 @@ export class TodolistComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
                 this.taskLoading = false;
             }));
+    }
+
+    getFilteredTasks() {
+        switch (this.filteredValue) {
+            case TaskStatus.All: {
+                return this.tasks;
+            }
+
+            case TaskStatus.Completed: {
+                return this.tasks.filter((t) => {
+                    return t.status === 2;
+                });
+            }
+
+            case TaskStatus.Active: {
+                return this.tasks.filter((t) => {
+                    return t.status === 0;
+                });
+            }
+        }
     }
 
     ngOnDestroy() {

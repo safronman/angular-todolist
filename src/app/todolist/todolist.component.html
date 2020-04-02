@@ -1,36 +1,57 @@
 <div class="todolist__container">
     <button class="btn delete__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
+
     <div *ngIf="!taskLoading; else showLoader">
-        <div>
-            <h3 class="todolist__title" (dblclick)="changeTitle()"
-                *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
-            <ng-template #showEditMode>
-                <input class="todolist__title-edit-mode"
-                       type="text"
-                       placeholder="enter new value"
-                       [value]="todolist.title"
-                       [(ngModel)]="todolist.title"
-                       (blur)="onBlurTodolistTitle(todolist.id)"
-                       autofocus
-                >
+        <div class="todolist__main-info">
+            <div>
+                <h3 class="todolist__title" (dblclick)="changeTitle()"
+                    *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
+                <ng-template #showEditMode>
+                    <input class="todolist__title-edit-mode"
+                           type="text"
+                           placeholder="enter new value"
+                           [value]="todolist.title"
+                           [(ngModel)]="todolist.title"
+                           (blur)="onBlurTodolistTitle(todolist.id)"
+                           autofocus
+                    >
+                </ng-template>
+            </div>
+            <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
+
+            <div *ngIf="isTasks; else noTasksMessage">
+                <app-task
+                    *ngFor="let task of getFilteredTasks()"
+                    [task]="task"
+                    (deleteTask)="deleteTask($event)"
+                    (changeTask)="changeTask($event)"
+                ></app-task>
+            </div>
+            <ng-template #noTasksMessage>
+                <p>Tasks have not been added yet. Please add task</p>
             </ng-template>
         </div>
-        <app-add-new-item-form (addItem)="addTask($event)"></app-add-new-item-form>
 
-        <div *ngIf="isTasks; else noTasksMessage">
-            <app-task
-                *ngFor="let task of tasks"
-                [task]="task"
-                (deleteTask)="deleteTask($event)"
-                (changeTask)="changeTask($event)"
-            ></app-task>
+        <div class="todolist__btn-container">
+            <button class="btn  btn--todolist"
+                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.All}"
+                    (click)="filteredValue = TaskStatus.All">
+                All
+            </button>
+            <button class="btn  btn--todolist"
+                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.Completed}"
+                    (click)="filteredValue = TaskStatus.Completed">
+                Completed
+            </button>
+            <button class="btn  btn--todolist"
+                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.Active}"
+                    (click)="filteredValue = TaskStatus.Active">
+                Active
+            </button>
         </div>
-        <ng-template #noTasksMessage>
-            <p>Tasks have not been added yet. Please add task</p>
-        </ng-template>
         <hr>
-        <p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p>
-    </div>
+        <p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p></div>
+
     <ng-template #showLoader>
         <app-tail-spin-loader></app-tail-spin-loader>
     </ng-template>
