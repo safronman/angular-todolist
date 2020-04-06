@@ -6,15 +6,28 @@
             <button class="btn  task-page__btn" [routerLink]="['/']">to main page</button>
         </div>
         <ul>
-            <li class="task-page__item"><b>Task description</b>: {{ task.description }}</li>
+            <li class="task-page__item" *ngIf="task.description; else emptyDescription"><b>Task description</b>: {{ task.description }}</li>
+            <ng-template #emptyDescription>
+                    <li class="task-page__item"><b>Task description: </b>empty description</li>
+            </ng-template>
+
             <li class="task-page__item"><b>Task status:</b> {{ task.status }}</li>
             <li class="task-page__item"><b>Task priority:</b> {{ task.priority }}</li>
-            <li class="task-page__item"><b>Task startDate:</b> {{ task.startDate }}</li>
-            <li class="task-page__item"><b>Task deadline:</b> {{ task.deadline }}</li>
+
+            <li class="task-page__item" *ngIf="task.startDate; else emptyStartDate"><b>Task startDate:</b> {{ task.startDate | date: "fullDate" }}</li>
+            <ng-template #emptyStartDate>
+                <li class="task-page__item"><b>Task startDate: </b>empty startDate</li>
+            </ng-template>
+
+            <li class="task-page__item" *ngIf="task.deadline; else emptyDeadline"><b>Task deadline:</b> {{ task.deadline | date: "fullDate" }}</li>
+            <ng-template #emptyDeadline>
+                <li class="task-page__item"><b>Task deadline: </b>empty deadline</li>
+            </ng-template>
+
             <li class="task-page__item"><b>Task id:</b> {{ task.id }}</li>
             <li class="task-page__item"><b>Task todoListId:</b> {{ task.todoListId }}</li>
             <li class="task-page__item"><b>Task order:</b> {{ task.order }}</li>
-            <li class="task-page__item"><b>Task addedDate:</b> {{ task.addedDate }};</li>
+            <li class="task-page__item"><b>Task addedDate:</b> {{ task.addedDate | date: "fullDate" }};</li>
         </ul>
     </div>
 </ng-template>
