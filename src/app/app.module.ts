@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {LoaderComponent} from './shared/components/loader/loader.component';
 import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
 import {TodoFooterComponent} from './todo-footer/todo-footer.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {TodoFooterComponent} from './todo-footer/todo-footer.component';
     imports: [
         BrowserModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]
