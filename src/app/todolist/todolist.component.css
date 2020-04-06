@@ -12,6 +12,20 @@
     margin-bottom: 20px;
 }
 
+.todolist__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.todolist__title {
+    font-size: 24px;
+
+    margin: 0;
+}
+
 .todolist__btn-container {
     display: flex;
     justify-content: space-between;

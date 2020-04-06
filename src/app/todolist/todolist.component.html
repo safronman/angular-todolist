@@ -1,11 +1,12 @@
 <div class="todolist__container">
-    <button class="btn delete__btn" (click)="onDeleteTodolistClick(todolist.id)">x</button>
-
     <div *ngIf="!taskLoading; else showLoader">
         <div class="todolist__main-info">
             <div>
-                <h3 class="todolist__title" (dblclick)="changeTitle()"
-                    *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
+                <div class="todolist__header">
+                    <h3 class="todolist__title" (dblclick)="changeTitle()"
+                       *ngIf="!editTitleMode; else showEditMode">{{ todolist.title }}</h3>
+                    <button class="task__btn  task__btn--delete" (click)="onDeleteTodolistClick(todolist.id)"></button>
+                </div>
                 <ng-template #showEditMode>
                     <input class="todolist__title-edit-mode"
                            type="text"

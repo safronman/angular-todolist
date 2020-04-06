@@ -3,20 +3,21 @@
 }
 
 .task__inner-container {
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     padding: 0 10px;
     text-align: center;
-    border: 2px solid grey;
 }
 
 .task__grid-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .task__info {
     display: flex;
     align-items: center;
+    width: 70%;
 }
 
 .task__input {
@@ -28,18 +29,13 @@
     text-align: left;
 }
 
-.task__date {
-    margin: 0 0 10px 0;
-
-    text-align: left;
-}
-
 .task__title-completed {
     opacity: .3;
 }
 
 .task__input-edit-mode {
+    width: 100%;
     margin: 10px 0;
     padding: 10px;
-    border: 2px solid grey;
+    border: 2px crimson dashed;
 }
