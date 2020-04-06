@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {LoaderComponent} from './shared/components/loader/loader.component';
 import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
+import {TodoFooterComponent} from './todo-footer/todo-footer.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail
         HomeComponent,
         AddNewItemFormComponent,
         LoaderComponent,
-        TailSpinLoaderComponent
+        TailSpinLoaderComponent,
+        TodoFooterComponent
     ],
     imports: [
         BrowserModule,

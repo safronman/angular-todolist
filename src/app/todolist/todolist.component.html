@@ -21,7 +21,7 @@
 
             <div *ngIf="isTasks; else noTasksMessage">
                 <app-task
-                    *ngFor="let task of getFilteredTasks()"
+                    *ngFor="let task of getFilteredTasks(this.filteredValue)"
                     [task]="task"
                     (deleteTask)="deleteTask($event)"
                     (changeTask)="changeTask($event)"
@@ -32,29 +32,15 @@
             </ng-template>
         </div>
 
-        <div class="todolist__footer">
-            <p>{{ getActiveTasks() }} active tasks</p>
-            <div class="todolist__btn-container">
-                <button class="btn  btn--todolist"
-                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.All}"
-                        (click)="filteredValue = TaskStatus.All">
-                    All
-                </button>
-                <button class="btn  btn--todolist"
-                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.Completed}"
-                        (click)="filteredValue = TaskStatus.Completed">
-                    Completed
-                </button>
-                <button class="btn  btn--todolist"
-                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.Active}"
-                        (click)="filteredValue = TaskStatus.Active">
-                    Active
-                </button>
-            </div>
-            <button class="btn  btn--todolist  btn--todolist--delete" (click)="clearCompleted()">Clear completed</button>
-        </div>
-
-        <p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p></div>
+        <app-todo-footer
+            [tasks]="tasks"
+            [todolist]="todolist"
+            [filteredValue]="filteredValue"
+            (filterTasks)="getFilteredTasks($event)"
+            (clearCompletedTasks)="deleteTask($event)"
+        >
+        </app-todo-footer>
+    </div>
 
     <ng-template #showLoader>
         <app-tail-spin-loader></app-tail-spin-loader>

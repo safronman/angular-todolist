@@ -1,0 +1,41 @@
+
+.todolist__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom: 2px solid grey;
+}
+
+.btn--todolist {
+    font-size: 14px;
+
+    margin-right: 5px;
+    padding: 5px 10px;
+
+    color: darkslategrey;
+    border: 1px solid grey;
+    background-color: white;
+}
+
+.btn--todolist:hover {
+    color: white;
+    background-color: #0d1a1a;
+}
+
+.btn--todolist--delete {
+    color: white;
+    border: none;
+    background-color: crimson;;
+}
+
+.btn--todolist--delete:hover {
+    background-color: #b91435;
+}
+
+.btn-selected {
+    color: white;
+    background-color: darkslategrey;
+}

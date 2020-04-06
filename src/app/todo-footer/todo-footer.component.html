@@ -1,0 +1,24 @@
+<div class="todolist__footer">
+    <p>{{ getActiveTasks() }} active tasks</p>
+    <div class="todolist__btn-container">
+        <button class="btn  btn--todolist"
+                [ngClass]="{'btn-selected': filteredValue === TaskStatus.All}"
+                (click)="changeFilterValue(TaskStatus.All)">
+            All
+        </button>
+        <button class="btn  btn--todolist"
+                [ngClass]="{'btn-selected': filteredValue === TaskStatus.Completed}"
+                (click)="changeFilterValue(TaskStatus.Completed)">
+            Completed
+        </button>
+        <button class="btn  btn--todolist"
+                [ngClass]="{'btn-selected': filteredValue === TaskStatus.Active}"
+                (click)="changeFilterValue(TaskStatus.Active)">
+            Active
+        </button>
+    </div>
+    <button class="btn  btn--todolist  btn--todolist--delete" (click)="clearCompleted()">
+        Clear completed
+    </button>
+</div>
+<p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p>

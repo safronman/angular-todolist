@@ -39,7 +39,6 @@ export class TodolistComponent implements OnInit, OnDestroy {
     taskLoading = false;
     isTasks = false;
 
-    TaskStatus = TaskStatus;
     filteredValue = TaskStatus.All;
 
     subscriptions: Subscription = new Subscription();
@@ -107,7 +106,8 @@ export class TodolistComponent implements OnInit, OnDestroy {
             }));
     }
 
-    getFilteredTasks() {
+    getFilteredTasks(value) {
+        this.filteredValue = value;
         switch (this.filteredValue) {
             case TaskStatus.All: {
                 return this.tasks;
@@ -125,21 +125,6 @@ export class TodolistComponent implements OnInit, OnDestroy {
                 });
             }
         }
-    }
-
-    getActiveTasks() {
-        const activeTasks = this.tasks.filter((t) => {
-            return t.status === 0;
-        });
-        return activeTasks.length;
-    }
-
-    clearCompleted() {
-        this.tasks.forEach((t) => {
-            if (t.status === 2) {
-                this.deleteTask(t.id);
-            }
-        });
     }
 
     ngOnDestroy() {
