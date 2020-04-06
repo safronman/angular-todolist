@@ -1,0 +1,16 @@
+.task-page__container {
+    width: 80%;
+    margin: 20px auto 0;
+}
+
+.task-page__title {
+    font-size: 32px;
+
+    text-align: center;
+}
+
+.task-page__item {
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}

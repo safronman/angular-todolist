@@ -15,6 +15,7 @@
             </div>
             <p class="task__date">{{task.addedDate | date: 'short'}}</p>
         </div>
+        <button class="btn  info__btn"  [routerLink]="['/task', task.id, task.todoListId]">full info</button>
         <ng-template #editMode>
             <input
                 class="task__input-edit-mode"

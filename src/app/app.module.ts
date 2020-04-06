@@ -13,6 +13,7 @@ import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail
 import {TodoFooterComponent} from './todo-footer/todo-footer.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {TaskPageComponent} from './task-page/task-page.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
         LoaderComponent,
         TailSpinLoaderComponent,
         TodoFooterComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        TaskPageComponent
     ],
     imports: [
         BrowserModule,

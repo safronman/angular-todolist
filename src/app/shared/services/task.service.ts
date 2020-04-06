@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {ITask} from '../../todolist/todolist.component';
 import {IResponse} from './todolist.service';
 
-interface ITaskResponse {
+export interface ITaskResponse {
     items: Array<ITask>;
     totalCount: number;
     error: string;

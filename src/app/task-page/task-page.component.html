@@ -1,0 +1,19 @@
+<app-loader *ngIf="isLoading; else showTaskInfo"></app-loader>
+<ng-template #showTaskInfo>
+    <div class="task-page__container">
+        <h1 class="task-page__title">Task title: {{ task.title }}</h1>
+        <ul>
+            <li class="task-page__item"><b>Task description</b>: {{ task.description }}</li>
+            <li class="task-page__item"><b>Task status:</b> {{ task.status }}</li>
+            <li class="task-page__item"><b>Task priority:</b> {{ task.priority }}</li>
+            <li class="task-page__item"><b>Task startDate:</b> {{ task.startDate }}</li>
+            <li class="task-page__item"><b>Task deadline:</b> {{ task.deadline }}</li>
+            <li class="task-page__item"><b>Task id:</b> {{ task.id }}</li>
+            <li class="task-page__item"><b>Task todoListId:</b> {{ task.todoListId }}</li>
+            <li class="task-page__item"><b>Task order:</b> {{ task.order }}</li>
+            <li class="task-page__item"><b>Task addedDate:</b> {{ task.addedDate }};</li>
+        </ul>
+    </div>
+</ng-template>
+
+
