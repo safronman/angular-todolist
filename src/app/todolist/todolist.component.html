@@ -28,28 +28,32 @@
                 ></app-task>
             </div>
             <ng-template #noTasksMessage>
-                <p>Tasks have not been added yet. Please add task</p>
+                <p class="todolist__not-found-tasks-title">Tasks not found</p>
             </ng-template>
         </div>
 
-        <div class="todolist__btn-container">
-            <button class="btn  btn--todolist"
-                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.All}"
-                    (click)="filteredValue = TaskStatus.All">
-                All
-            </button>
-            <button class="btn  btn--todolist"
-                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.Completed}"
-                    (click)="filteredValue = TaskStatus.Completed">
-                Completed
-            </button>
-            <button class="btn  btn--todolist"
-                    [ngClass]="{'btn-selected': filteredValue === TaskStatus.Active}"
-                    (click)="filteredValue = TaskStatus.Active">
-                Active
-            </button>
+        <div class="todolist__footer">
+            <p>{{ getActiveTasks() }} active tasks</p>
+            <div class="todolist__btn-container">
+                <button class="btn  btn--todolist"
+                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.All}"
+                        (click)="filteredValue = TaskStatus.All">
+                    All
+                </button>
+                <button class="btn  btn--todolist"
+                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.Completed}"
+                        (click)="filteredValue = TaskStatus.Completed">
+                    Completed
+                </button>
+                <button class="btn  btn--todolist"
+                        [ngClass]="{'btn-selected': filteredValue === TaskStatus.Active}"
+                        (click)="filteredValue = TaskStatus.Active">
+                    Active
+                </button>
+            </div>
+            <button class="btn  btn--todolist  btn--todolist--delete" (click)="clearCompleted()">Clear completed</button>
         </div>
-        <hr>
+
         <p>Todolist added date: <b>{{ todolist.addedDate | date :"longDate" }}</b></p></div>
 
     <ng-template #showLoader>

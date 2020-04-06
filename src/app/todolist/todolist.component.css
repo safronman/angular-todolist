@@ -1,7 +1,7 @@
 .todolist__container {
     position: relative;
 
-    width: 300px;
+    width: 500px;
     margin: 0 20px 20px 0;
     padding: 20px;
 
@@ -9,7 +9,7 @@
 }
 
 .todolist__main-info {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .todolist__btn-container {
@@ -24,16 +24,50 @@
     border: 2px solid grey;
 }
 
-.btn--todolist {
-    font-size: 16px;
+.todolist__not-found-tasks-title {
+    font-weight: bold;
 
-    padding: 5px 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.todolist__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom: 2px solid grey;
+}
+
+.btn--todolist {
+    font-size: 14px;
+
+    margin-right: 5px;
+    padding: 5px 10px;
+
+    color: darkslategrey;
+    border: 1px solid grey;
+    background-color: white;
+}
+
+.btn--todolist:hover {
+    color: white;
+    background-color: #0d1a1a;
+}
+
+.btn--todolist--delete {
+    color: white;
+    border: none;
+    background-color: crimson;;
+}
+
+.btn--todolist--delete:hover {
+    background-color: #b91435;
 }
 
 .btn-selected {
-    background-color: lightseagreen;
-}
-
-.btn-selected:hover {
-    background-color: #1d9890;
+    color: white;
+    background-color: darkslategrey;
 }
