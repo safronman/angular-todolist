@@ -12,6 +12,7 @@ import {LoaderComponent} from './shared/components/loader/loader.component';
 import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
 import {TodoFooterComponent} from './todo-footer/todo-footer.component';
 import {AppRoutingModule} from './app-routing.module';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app-routing.module';
         AddNewItemFormComponent,
         LoaderComponent,
         TailSpinLoaderComponent,
-        TodoFooterComponent
+        TodoFooterComponent,
+        PageNotFoundComponent
     ],
     imports: [
         BrowserModule,
