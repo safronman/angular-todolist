@@ -19,6 +19,7 @@
 }
 
 .add-new-item-form__input {
+    width: 100%;
     margin-right: 10px;
     padding: 10px;
 
