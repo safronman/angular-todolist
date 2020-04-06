@@ -1,7 +1,10 @@
 <app-loader *ngIf="isLoading; else showTaskInfo"></app-loader>
 <ng-template #showTaskInfo>
     <div class="task-page__container">
-        <h1 class="task-page__title">Task title: {{ task.title }}</h1>
+        <div class="task-page__header-container">
+            <h1 class="task-page__title">Task title: {{ task.title }}</h1>
+            <button class="btn  task-page__btn" [routerLink]="['/']">to main page</button>
+        </div>
         <ul>
             <li class="task-page__item"><b>Task description</b>: {{ task.description }}</li>
             <li class="task-page__item"><b>Task status:</b> {{ task.status }}</li>
