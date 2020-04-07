@@ -28,5 +28,8 @@
             </p>
         </div>
         <button class="btn  login-page__btn" type="submit" [disabled]="!loginForm.valid">Log in</button>
+        <div *ngIf="formMessage.length">
+            <p class="login-page__error-message">{{ formMessage }}</p>
+        </div>
     </form>
 </div>

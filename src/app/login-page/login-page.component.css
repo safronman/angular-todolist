@@ -51,3 +51,9 @@
 .error-message {
     color: crimson;
 }
+
+.login-page__error-message {
+    font-size: 24px;
+
+    color: crimson;
+}
