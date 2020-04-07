@@ -1,14 +1,22 @@
 <div class="login-page">
     <h1 class="login-page__title">Login form</h1>
-    <form class="login-page__form">
+    <form class="login-page__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="login-page__form-field">
             <label class="login-page__label" for="email">Email</label>
-            <input class="login-page__input-field" type="email" id="email">
+            <input class="login-page__input-field"
+                   type="email"
+                   id="email"
+                   formControlName="email"
+            >
         </div>
         <div class="login-page__form-field">
             <label class="login-page__label" for="password">Password</label>
-            <input class="login-page__input-field" type="password" id="password">
+            <input class="login-page__input-field"
+                   type="password"
+                   id="password"
+                   formControlName="password"
+            >
         </div>
-        <button class="btn  login-page__btn">Log in</button>
+        <button class="btn  login-page__btn" type="submit" [disabled]="!loginForm.valid">Log in</button>
     </form>
 </div>
