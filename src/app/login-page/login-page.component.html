@@ -7,7 +7,12 @@
                    type="email"
                    id="email"
                    formControlName="email"
+                   [ngClass]="{'form-control-error': loginForm.get('email').touched && loginForm.get('email').invalid}"
             >
+            <div *ngIf="loginForm.get('email').invalid &&  loginForm.get('email').touched">
+                <p class="error-message" *ngIf="loginForm.get('email').errors['required']" >Email mustn't be empty</p>
+                <p class="error-message" *ngIf="loginForm.get('email').errors['pattern']" >Enter a valid email</p>
+            </div>
         </div>
         <div class="login-page__form-field">
             <label class="login-page__label" for="password">Password</label>
@@ -15,7 +20,12 @@
                    type="password"
                    id="password"
                    formControlName="password"
+                   [ngClass]="{'form-control-error': loginForm.get('password').touched && loginForm.get('password').invalid}"
             >
+            <p class="error-message"
+               *ngIf="loginForm.get('password').invalid &&  loginForm.get('password').touched">
+                The field mustn't be empty
+            </p>
         </div>
         <button class="btn  login-page__btn" type="submit" [disabled]="!loginForm.valid">Log in</button>
     </form>

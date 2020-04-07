@@ -43,3 +43,11 @@
 
     text-transform: uppercase;
 }
+
+.form-control-error {
+    border: 2px solid crimson;
+}
+
+.error-message {
+    color: crimson;
+}

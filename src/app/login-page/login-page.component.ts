@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-login-page',
@@ -9,8 +9,10 @@ import {FormGroup, FormControl} from '@angular/forms';
 export class LoginPageComponent implements OnInit {
 
     loginForm = new FormGroup({
-        email: new FormControl(''),
-        password: new FormControl(''),
+        email: new FormControl('',
+            [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,8}$')]),
+        password: new FormControl('',
+            [Validators.required, Validators.minLength(5)]),
     });
 
     constructor() {
@@ -20,6 +22,8 @@ export class LoginPageComponent implements OnInit {
     }
 
     onSubmit() {
-        console.warn(this.loginForm.value);
+        debugger
+        this.loginForm.get('email')
+        // console.warn(this.loginForm.value);
     }
 }
