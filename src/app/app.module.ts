@@ -14,6 +14,7 @@ import {TodoFooterComponent} from './home-page/todo-footer/todo-footer.component
 import {AppRoutingModule} from './app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TaskPageComponent} from './task-page/task-page.component';
+import {LoginPageComponent} from './login-page/login-page.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {TaskPageComponent} from './task-page/task-page.component';
         TailSpinLoaderComponent,
         TodoFooterComponent,
         PageNotFoundComponent,
-        TaskPageComponent
+        TaskPageComponent,
+        LoginPageComponent
     ],
     imports: [
         BrowserModule,
