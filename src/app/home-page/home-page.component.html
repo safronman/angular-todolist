@@ -1,5 +1,8 @@
 <div class="home__container" *ngIf="isTodolistsLoaded; else loader">
-    <h1 class="home__title">Angular todolist</h1>
+    <div class="home__header">
+        <h1 class="home__title">Angular todolist</h1>
+        <button class="btn home__logout-btn" (click)="logOut()">log out</button>
+    </div>
     <app-add-new-item-form [isInputBig]="true" (addItem)="addTodolist($event)"></app-add-new-item-form>
 
     <div *ngIf="isTodolists; else noTodolistsMessage">

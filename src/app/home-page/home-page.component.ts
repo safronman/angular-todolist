@@ -2,6 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from '../shared/services/todolist.service';
 import {Subscription} from 'rxjs';
 import {IChangeTodoTitle} from './todolist/todolist.component';
+import {AuthService} from '../shared/services/auth.service';
+import {Router} from '@angular/router';
+import {ResultCode} from '../shared/enums/enums';
 
 export interface ITodo {
     id: string;
@@ -24,7 +27,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     subscriptions: Subscription = new Subscription();
 
-    constructor(private todolistService: TodolistService) {
+    constructor(
+        private todolistService: TodolistService,
+        private authService: AuthService,
+        private router: Router
+    ) {
     }
 
     ngOnInit() {
@@ -73,6 +80,17 @@ export class HomePageComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
                 this.loading = false;
             }));
+    }
+
+    logOut() {
+        this.isTodolistsLoaded = false;
+        this.authService.logOut()
+            .subscribe((res) => {
+                if (res.resultCode === ResultCode.Success) {
+                    this.router.navigate(['/login']);
+                }
+                this.isTodolistsLoaded = true;
+            });
     }
 
     ngOnDestroy() {

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {IUser} from 'src/app/login-page/login-page.component';
+import {delay} from 'rxjs/operators';
 
 interface ILoginResponse {
     resultCode: number;
@@ -29,4 +30,7 @@ export class AuthService {
         return this.http.post<ILoginResponse>(`${environment.baseUrl}/auth/login`, user, this.options);
     }
 
+    logOut(): Observable<ILoginResponse> {
+        return this.http.delete<ILoginResponse>(`${environment.baseUrl}/auth/login`, this.options)
+    }
 }
