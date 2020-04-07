@@ -35,20 +35,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.isAuth();
-    }
-
-    isAuth() {
-        this.isTodolistsLoaded = false;
-        this.subscriptions.add(this.authService.me()
-            .subscribe((response) => {
-                if (response.resultCode === ResultCode.Success) {
-                    this.getTodolists();
-                } else {
-                    this.router.navigate(['/login']);
-                }
-            })
-        );
+        this.getTodolists();
     }
 
     getTodolists() {
