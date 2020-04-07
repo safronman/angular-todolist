@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ITaskResponse, TaskService} from '../shared/services/task.service';
 import {ActivatedRoute} from '@angular/router';
-import {ITask} from '../todolist/todolist.component';
+import {ITask} from '../home-page/todolist/todolist.component';
 import {concatMap, find} from 'rxjs/operators';
 
 @Component({

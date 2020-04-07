@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodolistService} from '../shared/services/todolist.service';
 import {Subscription} from 'rxjs';
-import {IChangeTodoTitle} from '../todolist/todolist.component';
+import {IChangeTodoTitle} from './todolist/todolist.component';
 
 export interface ITodo {
     id: string;
@@ -12,10 +12,10 @@ export interface ITodo {
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    templateUrl: './home-page.component.html',
+    styleUrls: ['./home-page.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomePageComponent implements OnInit, OnDestroy {
 
     todolists: Array<ITodo> = [];
     isTodolistsLoaded = false;

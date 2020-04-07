@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {ITodo} from '../home/home.component';
-import {TaskService} from '../shared/services/task.service';
+import {ITodo} from '../home-page.component';
+import {TaskService} from '../../shared/services/task.service';
 import {Subscription} from 'rxjs';
-import {TaskStatus} from '../shared/enums/enums';
+import {TaskStatus} from '../../shared/enums/enums';
 
 export interface ITask {
     description: string;

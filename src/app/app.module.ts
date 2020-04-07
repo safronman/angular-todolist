@@ -2,15 +2,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {TodolistComponent} from './todolist/todolist.component';
-import {TaskComponent} from './task/task.component';
-import {HomeComponent} from './home/home.component';
-import {AddNewItemFormComponent} from './add-new-item-form/add-new-item-form.component';
+import {TodolistComponent} from './home-page/todolist/todolist.component';
+import {TaskComponent} from './home-page/task/task.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {AddNewItemFormComponent} from './home-page/add-new-item-form/add-new-item-form.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {LoaderComponent} from './shared/components/loader/loader.component';
 import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
-import {TodoFooterComponent} from './todo-footer/todo-footer.component';
+import {TodoFooterComponent} from './home-page/todo-footer/todo-footer.component';
 import {AppRoutingModule} from './app-routing.module';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {TaskPageComponent} from './task-page/task-page.component';
@@ -20,7 +20,7 @@ import {TaskPageComponent} from './task-page/task-page.component';
         AppComponent,
         TodolistComponent,
         TaskComponent,
-        HomeComponent,
+        HomePageComponent,
         AddNewItemFormComponent,
         LoaderComponent,
         TailSpinLoaderComponent,

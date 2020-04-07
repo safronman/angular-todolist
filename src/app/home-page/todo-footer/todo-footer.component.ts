@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITask} from '../todolist/todolist.component';
-import {TaskStatus} from '../shared/enums/enums';
-import {ITodo} from '../home/home.component';
+import {TaskStatus} from '../../shared/enums/enums';
+import {ITodo} from '../home-page.component';
 
 @Component({
     selector: 'app-todo-footer',

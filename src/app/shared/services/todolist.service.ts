@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ITodo} from '../../home/home.component';
+import {ITodo} from '../../home-page/home-page.component';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {delay} from 'rxjs/operators';
