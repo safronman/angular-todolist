@@ -7,7 +7,7 @@ import {TaskComponent} from './home-page/task/task.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {AddNewItemFormComponent} from './home-page/add-new-item-form/add-new-item-form.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoaderComponent} from './shared/components/loader/loader.component';
 import {TailSpinLoaderComponent} from './shared/components/tail-spin-loader/tail-spin-loader.component';
 import {TodoFooterComponent} from './home-page/todo-footer/todo-footer.component';
@@ -34,7 +34,8 @@ import {LoginPageComponent} from './login-page/login-page.component';
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

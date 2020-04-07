@@ -1,0 +1,45 @@
+.login-page {
+    width: 50%;
+    margin: 0 auto;
+
+    border: 2px solid grey;
+}
+
+.login-page__title {
+    font-size: 42px;
+
+    text-align: center;
+}
+
+.login-page__form {
+    width: 90%;
+    margin: 0 auto 30px;
+}
+
+.login-page__form-field {
+    margin-bottom: 20px;
+}
+
+.login-page__label {
+    font-size: 18px;
+
+    display: block;
+}
+
+.login-page__input-field {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 20px;
+
+    border: 2px solid grey;
+}
+
+
+.login-page__btn {
+    font-size: 18px;
+
+    width: 100%;
+    padding: 10px 20px;
+
+    text-transform: uppercase;
+}
