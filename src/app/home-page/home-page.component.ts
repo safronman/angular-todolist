@@ -35,27 +35,34 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.isAuth();
+    }
+
+    isAuth() {
         this.isTodolistsLoaded = false;
-        this.authService.me()
+        this.subscriptions.add(this.authService.me()
             .subscribe((response) => {
                 if (response.resultCode === ResultCode.Success) {
-                    this.subscriptions.add(this.todolistService.getTodolists()
-                        .subscribe((res) => {
-                            if (res.length === 0) {
-                                this.isTodolists = false;
-                                this.isTodolistsLoaded = true;
-                            } else {
-                                this.isTodolists = true;
-                                this.todolists = res;
-                                this.isTodolistsLoaded = true;
-                            }
-                        }));
+                    this.getTodolists();
                 } else {
                     this.router.navigate(['/login']);
                 }
-            });
+            })
+        );
+    }
 
-
+    getTodolists() {
+        this.subscriptions.add(this.todolistService.getTodolists()
+            .subscribe((res) => {
+                if (res.length === 0) {
+                    this.isTodolists = false;
+                    this.isTodolistsLoaded = true;
+                } else {
+                    this.isTodolists = true;
+                    this.todolists = res;
+                    this.isTodolistsLoaded = true;
+                }
+            }));
     }
 
     addTodolist(value: string) {
@@ -93,13 +100,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     logOut() {
         this.isTodolistsLoaded = false;
-        this.authService.logOut()
+        this.subscriptions.add(this.authService.logOut()
             .subscribe((res) => {
                 if (res.resultCode === ResultCode.Success) {
                     this.router.navigate(['/login']);
                 }
                 this.isTodolistsLoaded = true;
-            });
+            })
+        );
     }
 
     ngOnDestroy() {

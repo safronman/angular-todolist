@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {ResultCode} from '../shared/enums/enums';
+import {Subscription} from 'rxjs';
 
 export interface IUser {
     email: string;
@@ -16,7 +17,7 @@ export interface IUser {
     templateUrl: './login-page.component.html',
     styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
 
     formMessage = '';
 
@@ -27,9 +28,11 @@ export class LoginPageComponent implements OnInit {
             [Validators.required, Validators.minLength(2)]),
     });
 
+    subscriptions: Subscription = new Subscription();
+
     constructor(
         private authService: AuthService,
-        private router: Router,
+        private router: Router
     ) {
     }
 
@@ -42,7 +45,11 @@ export class LoginPageComponent implements OnInit {
             password: this.loginForm.value.password
         };
 
-        this.authService.logIn(user)
+        this.login(user);
+    }
+
+    login(user) {
+        this.subscriptions.add(this.authService.logIn(user)
             .subscribe(
                 (res) => {
                     if (res.resultCode === ResultCode.Success) {
@@ -56,6 +63,10 @@ export class LoginPageComponent implements OnInit {
                 (err) => {
                     console.log('Incorrect value');
                 }
-            );
+            ));
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.unsubscribe();
     }
 }
