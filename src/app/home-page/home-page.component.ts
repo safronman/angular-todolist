@@ -36,17 +36,26 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.isTodolistsLoaded = false;
-        this.subscriptions.add(this.todolistService.getTodolists()
-            .subscribe((res) => {
-                if (res.length === 0) {
-                    this.isTodolists = false;
-                    this.isTodolistsLoaded = true;
+        this.authService.me()
+            .subscribe((response) => {
+                if (response.resultCode === ResultCode.Success) {
+                    this.subscriptions.add(this.todolistService.getTodolists()
+                        .subscribe((res) => {
+                            if (res.length === 0) {
+                                this.isTodolists = false;
+                                this.isTodolistsLoaded = true;
+                            } else {
+                                this.isTodolists = true;
+                                this.todolists = res;
+                                this.isTodolistsLoaded = true;
+                            }
+                        }));
                 } else {
-                    this.isTodolists = true;
-                    this.todolists = res;
-                    this.isTodolistsLoaded = true;
+                    this.router.navigate(['/login']);
                 }
-            }));
+            });
+
+
     }
 
     addTodolist(value: string) {

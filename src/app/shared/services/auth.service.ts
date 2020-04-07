@@ -3,13 +3,22 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {IUser} from 'src/app/login-page/login-page.component';
-import {delay} from 'rxjs/operators';
 
 interface ILoginResponse {
     resultCode: number;
     messages: Array<string>;
     data: {
         userId: number
+    };
+}
+
+interface IAuthMeResponse {
+    resultCode: number;
+    messages: Array<string>;
+    data: {
+        id: number
+        email: string
+        login: string
     };
 }
 
@@ -31,6 +40,10 @@ export class AuthService {
     }
 
     logOut(): Observable<ILoginResponse> {
-        return this.http.delete<ILoginResponse>(`${environment.baseUrl}/auth/login`, this.options)
+        return this.http.delete<ILoginResponse>(`${environment.baseUrl}/auth/login`, this.options);
+    }
+
+    me(): Observable<IAuthMeResponse> {
+        return this.http.get<IAuthMeResponse>(`${environment.baseUrl}/auth/me`, this.options);
     }
 }
